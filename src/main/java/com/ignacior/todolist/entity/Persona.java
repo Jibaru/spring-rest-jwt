@@ -1,14 +1,18 @@
 package com.ignacior.todolist.entity;
 
+import com.ignacior.todolist.security.entity.Usuario;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Persona {
@@ -25,6 +29,10 @@ public class Persona {
 
     @OneToMany(mappedBy = "persona", fetch = FetchType.EAGER)
     private Set<Tarea> tareas = new HashSet<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    private Usuario usuario;
 
     public Persona() {
     }
@@ -64,6 +72,14 @@ public class Persona {
 
     public void setTareas(Set<Tarea> tareas) {
         this.tareas = tareas;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
 }
