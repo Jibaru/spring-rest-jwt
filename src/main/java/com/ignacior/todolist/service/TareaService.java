@@ -27,10 +27,6 @@ public class TareaService {
         tareaRepository.save(tarea);
     }
 
-    public void update(Tarea tarea) {
-
-    }
-
     public void delete(Tarea tarea) {
         tareaRepository.delete(tarea);
     }

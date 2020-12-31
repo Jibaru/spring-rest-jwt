@@ -27,7 +27,11 @@ public class Persona {
     @Column(nullable = false, length = 8)
     private String dni;
 
-    @OneToMany(mappedBy = "persona", fetch = FetchType.EAGER)
+    @OneToMany(
+            mappedBy = "persona",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL
+    )
     private Set<Tarea> tareas = new HashSet<>();
 
     @OneToOne(cascade = CascadeType.ALL)

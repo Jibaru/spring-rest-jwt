@@ -65,12 +65,24 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        String[] resources = {
+            "/",
+            "/index.html",
+            "/assets/img/*",
+            "/*.js",
+            "/*.js.map",
+            "/*.css",
+            "/*.css.map",
+            "/favicon.ico"
+        };
+
         http
                 .cors()
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll() // login y registro
+                .antMatchers(resources).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)

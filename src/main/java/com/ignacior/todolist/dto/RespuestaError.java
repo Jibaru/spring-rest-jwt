@@ -12,6 +12,10 @@ public class RespuestaError {
         this.errores = Arrays.asList(errores);
     }
 
+    public RespuestaError(List<Error> errores) {
+        this.errores = errores;
+    }
+
     public boolean isOk() {
         return ok;
     }
